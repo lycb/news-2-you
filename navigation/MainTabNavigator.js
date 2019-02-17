@@ -21,20 +21,6 @@ PreferencesStack.navigationOptions = {
   ),
 }
 
-/*const SearchScreenStack = createStackNavigator({
-  Search: SearchScreen,
-})
-
-SearchScreenStack.navigationOptions = {
-  tabBarLabel: 'Preferences',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-    focused={focused}
-    name={Platform.OS === 'ios' ? 'ios-search' : 'md-search'}
-    />
-  ),
-}*/
-
 const LocalTVNewsStack = createStackNavigator({
   LocalTVNews: LocalTVNewsScreen,
 });
@@ -49,8 +35,24 @@ LocalTVNewsStack.navigationOptions = {
   ),
 };
 
+const SearchStack = createStackNavigator({
+  Search: SearchScreen,
+});
+
+SearchStack.navigationOptions = {
+  tabBarLabel: 'Search',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-search' : 'md-search'}
+    />
+  ),
+};
+
 export default createBottomTabNavigator({
   PreferencesStack,
-  //SearchScreenStack,
+  SearchStack,
   LocalTVNewsStack,
 });
+
+
