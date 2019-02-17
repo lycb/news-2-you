@@ -5,7 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import PreferencesScreen from '../screens/PreferencesScreen';
 import LocalTVNewsScreen from '../screens/LocalTVNewsScreen';
-//import SearchScreen from '../screens/SearchScreen';
+import SearchScreen from '../screens/SearchScreen';
 
 const PreferencesStack = createStackNavigator({
   Preferences: PreferencesScreen,
