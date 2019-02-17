@@ -32,7 +32,6 @@ let sphereKnn = require("sphere-knn"),
 let usrLat
 let usrLong
 let closestLat
-// TODO: assign usrLat and usrLong with actual location
 
 let points
 /*points = lookup(usrLat, usrLong, 1)
