@@ -7,7 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import PreferencesScreen from '../screens/PreferencesScreen';
-
+import LocalTVNewsScreen from '../screens/LocalTVNewsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -67,9 +67,24 @@ SettingsStack.navigationOptions = {
   ),
 };
 
+const LocalTVNewsStack = createStackNavigator({
+  LocalTVNews: LocalTVNewsScreen,
+});
+
+LocalTVNewsStack.navigationOptions = {
+  tabBarLabel: 'Local TV News',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios' ? 'ios-tv' : 'md-tv'}    />
+  ),
+};
+
 export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
   PreferencesStack,
+  LocalTVNewsStack,
 });
