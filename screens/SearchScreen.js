@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import { SearchBar } from 'react-native-search-bar';
+import SearchBar from 'react-native-search-bar';
 
 import { WebBrowser } from 'expo';
 
@@ -22,13 +22,20 @@ export default class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
+      isLoading: false,
       dataSource: null,
       search: ''
     }
+
+    this.updateSearch = this.updateSearch.bind(this);
   }
   //searchTerm = 'bitcoin'
+
   updateSearch() {
+    const { search } = this.state;
+    this.setState({
+      isLoading: true,
+    });
     return fetch('https://newsapi.org/v2/everything?' +
       `q=${search}`+   
       // 'sources=bbc-news&' +
@@ -39,7 +46,7 @@ export default class SearchScreen extends React.Component {
       this.setState({
         isLoading: false,
         dataSource: responseJson.articles,
-        search: search
+        search
       })
     })
     .catch ((error) => {
@@ -49,39 +56,36 @@ export default class SearchScreen extends React.Component {
   }
 
   render() {
-    //const { search } = this.state;
+    const { search } = this.state;
 
-    <SearchBar
-        placeholder='Search..'
-        onChangeText={this.updateSearch}
-        value={this.search}
-      />
+    
     if (this.state.isLoading) {
-
       return (
-
         <View style={styles.container}>
           <ActivityIndicator />
         </View>
-
-        )
-    } else {
-
-      
-
-      let articles = this.state.dataSource.map((val, key) => {
-        return <View key={key} style={styles.item}>
-            <Text>{val.title}</Text>
-          </View>
-      });
-
-      return (
-        <View style={styles.container}>
-            {articles}
-        </View>
-
-      ); 
+      );
     }
+
+    return (
+      <View>
+        <SearchBar
+          placeholder='Search..'
+          onChangeText={this.updateSearch}
+          value={search}
+        />
+        
+        <View style={styles.container}>
+        {
+          this.state.dataSource && this.state.dataSource.map((val, key) => {
+            return <View key={key} style={styles.item}>
+                <Text>{val.title}</Text>
+              </View>
+          })
+        }
+        </View>
+      </View>
+    );
   }
 }
 

@@ -5,3 +5,11 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
+./yarn.lock
+./yarn-error.log
+./package.json
+./app.json
+
+# api keys
+*.env
+
