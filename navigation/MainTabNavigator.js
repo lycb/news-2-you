@@ -3,54 +3,35 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import SearchScreen from '../screens/SearchScreen';
+import PreferencesScreen from '../screens/PreferencesScreen';
+import LocalTVNewsScreen from '../screens/LocalTVNewsScreen';
+//import SearchScreen from '../screens/SearchScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const PreferencesStack = createStackNavigator({
+  Preferences: PreferencesScreen,
+})
+
+PreferencesStack.navigationOptions = {
+  tabBarLabel: 'Preferences',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+    focused={focused}
+    name={Platform.OS === 'ios' ? 'ios-checkbox-outline' : 'md-checkbox-outline'}
+    />
+  ),
+}
+
+const LocalTVNewsStack = createStackNavigator({
+  LocalTVNews: LocalTVNewsScreen,
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+LocalTVNewsStack.navigationOptions = {
+  tabBarLabel: 'Local TV News',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
-
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
-  ),
-};
-
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
+        Platform.OS === 'ios' ? 'ios-tv' : 'md-tv'}    />
   ),
 };
 
@@ -69,10 +50,9 @@ SearchStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
-  SearchStack
+  PreferencesStack,
+  SearchStack,
+  LocalTVNewsStack,
 });
 
 
