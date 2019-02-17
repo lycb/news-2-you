@@ -7,10 +7,23 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
+
+const App = () => {
+    const handlePress = () => false
+    return (
+       <Button
+          onPress = {handlePress}
+          title = "Red button!"
+          color = "red"
+       />
+    )
+ }
+// export default App
 
 export default class PreferencesScreen extends React.Component {
     static navigationOptions = {
@@ -34,24 +47,53 @@ export default class PreferencesScreen extends React.Component {
     
               <View style={styles.topMiddleContainer}>
     
-                 <Text style={styles.getStartedText}>Get started by opening</Text>
+              <Text style={styles.getStartedText}>Liberal or Conservative</Text>
+
     
                 <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-                  <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
+                  
                 </View>
               </View>
-    
+                
+              <View style={{flex: 1, flexDirection: 'row'}}>
+
+              <View style={styles.liberalContainer}>
+              <Text style={styles.getStartedText}>Liberal</Text>
+              </View>
+
+              <View style={styles.conservativeContainer}>
+              <Text style={styles.getStartedText}>Conservative</Text>
+              </View>
+              </View>
+
+              <View style={{flex: 1, flexDirection: 'row'}}>
+
+              <View style={styles.tvFirstContainer}>
+              <Text style={styles.getStartedText}>Prioritize TV First</Text>
+              </View>
+
+              <View style={styles.tvLastContainer}>
+              <Text style={styles.getStartedText}>Prioritize Articles First</Text>
+              </View>
+              </View>
+
               <View style={styles.helpContainer}>
-                <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-                  <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-                </TouchableOpacity>
+                <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
+              Learn more
+                </Text>
+                
               </View>
             </ScrollView>
     
             <View style={styles.bottomMiddleInfoContainer}>
-              
+            <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
+              Choose your preferred news types and sources! 
+            </Text>
             </View>
+            
+            
           </View>
+           
         );
 
 
@@ -100,9 +142,11 @@ export default class PreferencesScreen extends React.Component {
           </View>
         );
         */
+      
     }
 
     // ----------
+
     _maybeRenderDevelopmentModeWarning() {
         if (__DEV__) {
           const learnMoreButton = (
@@ -127,7 +171,21 @@ export default class PreferencesScreen extends React.Component {
     }
 }
 
+/*
+<button onclick="buttonclickfn()"><text>Click me</text></button>
 
+                <p id="demo"></p>
+*/
+
+
+/*
+<Button
+                    onPress={onPress}
+                    title="Learn More"
+                    color="#841584"
+                    accessibilityLabel="Learn more about this purple button"
+                />
+*/
 
 const styles = StyleSheet.create({
     container: {
@@ -160,6 +218,27 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       marginHorizontal: 50,
     },
+
+    liberalContainer: {
+        alignItems: 'flex-start',
+        marginHorizontal: 25,
+    },
+
+    conservativeContainer: {
+        alignItems: 'flex-end',
+        marginHorizontal: 25,
+    },
+
+    tvFirstContainer: {
+        alignItems: 'flex-start',
+        marginHorizontal: 25,
+    },
+
+    tvLastContainer: {
+        alignItems: 'flex-end',
+        marginHorizontal: 25,
+    },
+
     homeScreenFilename: {
       marginVertical: 7,
     },
