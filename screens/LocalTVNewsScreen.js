@@ -102,7 +102,7 @@ class GeolocationExample extends Component {
       message = "Channel 9"
     }
     textpart1 = "We have detected that"
-    textpart2 = "you are from"
+    textpart2 = "you are in"
     textpart3 = "Watch"
     textpart4 = "on"
     textpart5 = "at"
