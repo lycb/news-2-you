@@ -7,18 +7,16 @@ import {
   SafeAreaView
 } from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
-import _ from 'lodash';
+import { getUsers } from "./api/index";
 
-class SettingsScreen extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       loading: false,
-      data: [], //what is being displayed
-      error: null,
-      query: "",
-      fullData: [],
+      data: [],
+      error: null
     };
   }
 
@@ -29,26 +27,17 @@ class SettingsScreen extends Component {
   makeRemoteRequest = () => {
     this.setState({ loading: true });
 
-    fetch('https://newsapi.org/v2/top-headlines?' +
-      'sources=bbc-news&' +
-      'apiKey=4dc8923eb74846f983cb4aafb59cb80a')
-    .then(( response ) => response.json())
-    .then(( responseJson ) => {
-
-      this.setState({
-        isLoading: false,
-        dataSource: responseJson.articles,
+    getUsers()
+      .then(users => {
+        this.setState({
+          loading: false,
+          data: users
+        });
       })
-    })
-    .catch ((error) => {
-      console.log(error)
-      
-    });
+      .catch(error => {
+        this.setState({ error, loading: false });
+      });
   };
-
-  handleSearch = (text) => { 
-    this.setState({query: text})
-  }
 
   renderSeparator = () => {
     return (
@@ -64,7 +53,7 @@ class SettingsScreen extends Component {
   };
 
   renderHeader = () => {
-    return <SearchBar placeholder="Type Here..." lightTheme round onChangeText={this.handleSearch} />;
+    return <SearchBar placeholder="Type Here..." lightTheme round />;
   };
 
   renderFooter = () => {
@@ -109,4 +98,4 @@ class SettingsScreen extends Component {
   }
 }
 
-export default SettingsScreen;
+export default App;
