@@ -1,10 +1,10 @@
-# news-app
+# news2you
 
 Created for Pearl Hacks 2019  using React Native
 
 Status: Incomplete. 
 
-TODO:
+# TODO:
 
 - Connect Twitter API
 - Get the search bar for the "Search" tab 
