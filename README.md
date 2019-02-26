@@ -4,6 +4,8 @@ Created for Pearl Hacks 2019  using React Native
 
 Status: Incomplete. 
 
+Credits: NewsAPI for the "Search" functionality 
+
 # TODO:
 
 - Connect Twitter API
